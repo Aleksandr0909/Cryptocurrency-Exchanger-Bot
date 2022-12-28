@@ -1,10 +1,9 @@
 import telebot
-from bot2 import get_price
+from utils import get_price
 import config
 
+
 bot = telebot.TeleBot(config.TELEGRAM_TOKEN)
-
-
 
 
 @bot.message_handler(commands=['start', 'help'])
@@ -14,6 +13,7 @@ def send_welcome(message: telebot.types.Message):
 
 
 def complete_exchange(message: telebot.types.Message):
+    # TODO: обработать ошибку
     convert, convert_to = message.text.split(' ')
     price = get_price(convert, convert_to)
     bot.send_message(message.chat.id, f'{convert_to} to {convert} = {price}')
@@ -27,5 +27,3 @@ def exchange(message: telebot.types.Message):
 
 
 bot.infinity_polling()
-
-# Имя бота Cryptocurrency Exchanger
