@@ -2,7 +2,7 @@ import telebot
 from bot2 import get_price
 import config
 
-bot = telebot.TeleBot(config.TOKEN_3)
+bot = telebot.TeleBot(config.TELEGRAM_TOKEN)
 
 
 

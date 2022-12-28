@@ -1,10 +1,11 @@
 import requests
 import config
 
+
 url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest'
 headers = {
     'Accepts': 'application/json',
-    'X-CMC_PRO_API_KEY': config.KEY,
+    'X-CMC_PRO_API_KEY': config.EXCHANGE_API_KEY,
 }
 session = requests.Session()
 session.headers.update(headers)
@@ -26,12 +27,3 @@ def get_price(currency: str, convert_to: str) -> float:
 
     data = response.json()
     return data['data'][currency]['quote'][convert_to]['price']
-
-
-def main():
-    print(f'Цена Эфира в биткоинах: {get_price("BTC", "ETH")}')
-    print(f'Цена XRP в рублях: {get_price("XRP", "RUB")}')
-
-
-if __name__ == '__main__':
-    main()
